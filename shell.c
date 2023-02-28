@@ -17,7 +17,7 @@ char *get_cmd()
 	char *prompt = "($)";
 	char *cmd;
 	char *buff;
-	unsigned int n;
+	size_t n;
 
 	write(STDOUT_FILENO, prompt, sizeof(prompt));
 	getline(&buff, &n, stdin);
