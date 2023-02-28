@@ -36,6 +36,8 @@ int main(void)
 				       c_count, argv[0]);
 			return (-1);
 		}
+		if (isatty(STDIN_FILENO) != 1)
+			exit(0);
 		free(arg_str);
 		free(argv);
 
