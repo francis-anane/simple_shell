@@ -9,14 +9,18 @@
  * main - entry point.
  *
  * Description: A simple shell program to execute commands
+ * @ac: Argument count
+ * @av: Argument vector
+ * @env: Environment argument
  * Return: 0 (success)
  */
 
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	char *cmd, **argv, *arg_str, *cm_str;
 	int pid, status, ret, c_count = 0;
 
+	cmdl_arg(ac, c_count, av);
 	cmd = get_cmd();
 	cm_str = get_cmd_file(cmd);
 	arg_str = get_args_str(cmd);
@@ -27,7 +31,7 @@ int main(void)
 		c_count++;
 		pid = fork();
 		if (pid == 0)
-			execve(cm_str, argv, NULL);
+			execve(cm_str, argv, env);
 		ret = waitpid(pid, &status, 0);
 		if (ret != pid)
 		{
@@ -49,6 +53,5 @@ int main(void)
 	free(cm_str);
 	free(arg_str);
 	free(argv);
-
 	return (0);
 }

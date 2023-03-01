@@ -132,3 +132,20 @@ char *get_cmd_file(char *cmd_str)
 	cmd_file[i] = '\0';
 	return (cmd_file);
 }
+
+/**
+ * cmdl_arg - Check command line arguments
+ * @ac: argument count
+ * @av: argument vector
+ * @c_count: command count
+ * Return: 0 on success, 1 on failure
+ */
+
+void cmdl_arg(int ac, int c_count, char **av)
+{
+	if (ac > 1)
+	{
+		printf("%s: %d: can't open %s\n", av[0], c_count, av[1]);
+		exit(0);
+	}
+}
