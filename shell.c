@@ -1,10 +1,3 @@
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <string.h>
 #include "main.h"
 /**
  * get_cmd - Gets a string entered fron standard input.
@@ -14,15 +7,13 @@
  */
 char *get_cmd()
 {
-	char *prompt = "$";
+	char *prompt = "($)";
 	char *cmd;
 	char *buff;
 	size_t n;
 
 	if (isatty(STDIN_FILENO) == 1)
-		prompt = "($)";
-
-	write(STDOUT_FILENO, prompt, sizeof(prompt));
+		write(STDOUT_FILENO, prompt, sizeof(prompt));
 	getline(&buff, &n, stdin);
 	cmd = strsep(&buff, "\n");
 	return (cmd);

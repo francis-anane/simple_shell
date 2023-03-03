@@ -1,10 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "main.h"
-#include <string.h>
-#include <sys/wait.h>
-#include <sys/types.h>
+
 /**
  * main - entry point.
  *
@@ -18,7 +13,7 @@
 int main(int ac, char **av, char **env)
 {
 	char *cmd, **argv, *arg_str, *cm_str;
-	int pid, status, ret, c_count = 0;
+	int c_count = 0;
 
 	cmdl_arg(ac, c_count, av);
 	cmd = get_cmd();
@@ -29,17 +24,9 @@ int main(int ac, char **av, char **env)
 	while (strcmp(cmd, "exit") != 0)
 	{
 		c_count++;
-		pid = fork();
-		if (pid == 0)
-			execve(cm_str, argv, env);
-		ret = waitpid(pid, &status, 0);
-		if (ret != pid)
-		{
-			if (argv[0] != NULL)
-				printf("hsh: %d: %s: not found\n",
-				       c_count, argv[0]);
-			return (-1);
-		}
+
+		creat_ps(cm_str, argv, env, c_count);
+
 		if (isatty(STDIN_FILENO) != 1)
 			exit(0);
 		free(arg_str);
