@@ -9,7 +9,7 @@
 char *get_path(char *exe)
 {
 	char **path, *exe_p, *tok, *cmd_str, *cmd;
-	int i, j, k;
+	unsigned int i, j, k;
 
 	path = malloc(sizeof(char *) * 8);
 	if (path == NULL)
