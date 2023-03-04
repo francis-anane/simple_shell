@@ -7,15 +7,14 @@
  */
 char *get_cmd()
 {
-	char *prompt = "($)";
-	char *cmd;
-	char *buff;
+	char *buff, *cmd;
 	size_t n;
 
 	if (isatty(STDIN_FILENO) == 1)
-		write(STDOUT_FILENO, prompt, sizeof(prompt));
+		printf("($)");
 	getline(&buff, &n, stdin);
 	cmd = strsep(&buff, "\n");
+
 	return (cmd);
 
 }

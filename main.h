@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <stdarg.h>
 
 int _putchar(char c);
 char *get_cmd();
@@ -18,5 +19,5 @@ char *get_cmd_file(char *cmd_str);
 void cmdl_arg(int ac, int c_count, char **av);
 char *get_path(char *exe);
 void creat_ps(char *path, char **av, char **env, int c);
-
+void _cd(char *dir, char *sh, int c);
 #endif
