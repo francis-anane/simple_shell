@@ -19,6 +19,7 @@ int main(int ac, char **av, char **env)
 
 	while (1)
 	{
+		c++;
 		cmd = get_cmd();
 		cm_str = get_cmd_file(cmd);
 		path = get_path(cm_str);

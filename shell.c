@@ -67,8 +67,8 @@ char *get_args_str(char *c_str)
 
 char **get_args(char *args_str)
 {
-	int size = 1;
-	unsigned int i = 0, j;
+	int size = 1, tok_len;
+	unsigned int i = 0;
 	char *tok;
 	char **args;
 
@@ -85,17 +85,17 @@ char **get_args(char *args_str)
 	tok = strtok(args_str, " ");
 	while (tok != NULL)
 	{
-		j = 0;
-		args[i] = malloc((strlen(tok) + 1) * sizeof(char));
+		tok_len = strlen(tok);
+		args[i] = malloc(tok_len + 1);
 		if (args[i] == NULL)
 			return (NULL);
-		for (; j < strlen(tok); j++)
-			args[i][j] = tok[j];
-		args[i][j] = '\0';
+		strcpy(args[i], tok);
+		strcat(args[i], "\0");
 
 		tok = strtok(NULL, " ");
 		i++;
 	}
+	/* Add null for execve cmdline args termination*/
 	args[i + 1] = NULL;
 
 	return (args);
@@ -130,15 +130,15 @@ char *get_cmd_file(char *cmd_str)
  * cmdl_arg - Check command line arguments
  * @ac: argument count
  * @av: argument vector
- * @c_count: command count
- * Return: 0 on success, 1 on failure
+ * @c: command count
  */
 
-void cmdl_arg(int ac, int c_count, char **av)
+void cmdl_arg(int ac, int c, char **av)
 {
 	if (ac > 1)
 	{
-		printf("%s: %d: can't open %s\n", av[0], c_count, av[1]);
+		if (access(av[1], F_OK) != 0)
+			printf("%s: %d: can't open %s\n", av[0], c, av[1]);
 		exit(0);
 	}
 }
