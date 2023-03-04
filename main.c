@@ -16,17 +16,18 @@ int main(int ac, char **av, char **env)
 	int c = 0;
 
 	cmdl_arg(ac, c, av);
-	cmd = get_cmd();
-	cm_str = get_cmd_file(cmd);
-	path = get_path(cm_str);
-	arg_str = get_args_str(cmd);
-	argv = get_args(arg_str);
 
-	while (strcmp(cmd, "exit") != 0)
+	while (1)
 	{
-		c++;
+		cmd = get_cmd();
+		cm_str = get_cmd_file(cmd);
+		path = get_path(cm_str);
+		arg_str = get_args_str(cmd);
+		argv = get_args(arg_str);
 		if (strcmp(path, "cd") == 0)
 			_cd(argv[1], av[0], c);
+		else if (strcmp(path, "exit") == 0)
+			exit(0);
 		else
 		{
 			creat_ps(path, argv, env, c);
@@ -37,12 +38,6 @@ int main(int ac, char **av, char **env)
 
 		if (isatty(STDIN_FILENO) != 1)
 			exit(0);
-
-		cmd = get_cmd();
-		cm_str = get_cmd_file(cmd);
-		path = get_path(cm_str);
-		arg_str = get_args_str(cmd);
-		argv = get_args(arg_str);
 	}
 	free(cm_str);
 	free(arg_str);
