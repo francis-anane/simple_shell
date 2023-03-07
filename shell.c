@@ -7,98 +7,22 @@
  */
 char *get_cmd()
 {
-	char *buff, *cmd;
+	char *buff, *cmd, *prmt = "($)";
 	size_t n;
+	int rd;
 
 	if (isatty(STDIN_FILENO) == 1)
-		printf("($)");
-	getline(&buff, &n, stdin);
+		printf("%s", prmt);
+	rd = getline(&buff, &n, stdin);
+	/* Handle Ctrl-D*/
+	if (rd == EOF)
+	{
+		printf("\n");
+		exit(0);
+	}
 	cmd = strsep(&buff, "\n");
 
 	return (cmd);
-
-}
-
-/**
- * get_args_str - Get argument string by removing back slashes.
- *
- * @c_str: The argument string.
- * Return: A pointer to the arguments string.
- */
-char *get_args_str(char *c_str)
-{
-	char *c_args;
-	char *tok_str;
-	unsigned int i, j;
-	int size = 0;
-
-	c_args = rindex(c_str, '/');
-	if (c_args == NULL)
-		c_args = c_str;
-
-	for (i = 0; i < strlen(c_args); i++)
-	{
-		if (c_args[i] == '/')
-			continue;
-		size++;
-	}
-
-	tok_str = malloc(size * sizeof(char));
-	if (tok_str == NULL)
-		return (NULL);
-	j = 0;
-	for (i = 0; i < strlen(c_args); i++)
-	{
-		if (c_args[i] == '/')
-			continue;
-		tok_str[j] = c_args[i];
-		j++;
-	}
-	tok_str[j] = '\0';
-
-	return (tok_str);
-}
-
-/**
- * get_args - Proccess a string to be used as arguments for exec system call.
- * @args_str: The string to process.
- * Return: A pointer to an array of strings.
- */
-
-char **get_args(char *args_str)
-{
-	int size = 1, tok_len;
-	unsigned int i = 0;
-	char *tok;
-	char **args;
-
-	for (; i < strlen(args_str); i++)
-		if (args_str[i] == ' ')
-			size++;
-
-	/*get tokens for command arguments*/
-
-	args = malloc((size + 1) * sizeof(char *));
-	if (args == NULL)
-		return (NULL);
-	i = 0;
-	tok = strtok(args_str, " ");
-	while (tok != NULL)
-	{
-		tok_len = strlen(tok);
-		args[i] = malloc(tok_len + 1);
-		if (args[i] == NULL)
-			return (NULL);
-		strcpy(args[i], tok);
-		strcat(args[i], "\0");
-
-		tok = strtok(NULL, " ");
-		i++;
-	}
-	/* Add null for execve cmdline args termination*/
-	args[i + 1] = NULL;
-
-	return (args);
 
 }
 
@@ -111,18 +35,8 @@ char **get_args(char *args_str)
 char *get_cmd_file(char *cmd_str)
 {
 	char *cmd_file;
-	unsigned int i = 0;
 
-	cmd_file = malloc(sizeof(char *));
-	if (cmd_file == NULL)
-		return (NULL);
-	for (; i < strlen(cmd_str); i++)
-	{
-		if (cmd_str[i] == ' ')
-			break;
-		cmd_file[i] = cmd_str[i];
-	}
-	cmd_file[i] = '\0';
+	cmd_file = strtok(cmd_str, " ");
 	return (cmd_file);
 }
 

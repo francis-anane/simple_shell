@@ -1,28 +1,22 @@
 #include "main.h"
 
 /**
- * main - entry point.
- *
- * Description: A simple shell program to execute commands
- * @ac: Argument count
- * @av: Argument vector
- * @env: Environment argument
- * Return: 0 (success)
+ * piped_cmd - Execute piped commands.
+ * @av: argument vector
+ * @env: environment argument
  */
-
-int main(int ac, char **av, char **env)
+void piped_cmd(char **av, char **env)
 {
-	char *cmd, *cmd_file, *cmd_cp, *path, **argv;
-	int c = 0;
+	char *cmd, *cmd_file, *cmd_cp, *path, **argv, *buff;
+	int rd, c = 0;
+	size_t n;
 
-	cmdl_arg(ac, c, av);
-	if (isatty(STDIN_FILENO) != 1)
-		piped_cmd(av, env);
-
-	while (1)
+	rd = getline(&buff, &n, stdin);
+	while (rd != EOF)
 	{
 		c++;
-		cmd = get_cmd();
+		cmd = strsep(&buff, "\n");
+
 		cmd_cp = strdup(cmd);
 		cmd_file = get_cmd_file(cmd);
 		path = get_path(cmd_file);
@@ -35,12 +29,8 @@ int main(int ac, char **av, char **env)
 		free(cmd_cp);
 		if (strcmp(path, "cd") == 0)
 			_cd(argv[1], av[0], c);
-
 		else if (strcmp(path, "exit") == 0)
-		{
-			free(argv);
-			exit(0);
-		}
+			printf("\n");
 		else
 		{
 			if (access(path, F_OK) == 0)
@@ -48,7 +38,9 @@ int main(int ac, char **av, char **env)
 			else
 				printf("hsh: %d: %s: not found\n", c, argv[0]);
 		}
+		rd = getline(&buff, &n, stdin);
+
 	}
 	free(argv);
-	return (0);
+	exit(0);
 }

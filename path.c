@@ -12,6 +12,8 @@ char *get_path(char *exe)
 	unsigned int tok_len, exe_len;
 
 	/* get path of shell executables*/
+	if (exe == NULL)
+		return (NULL);
 	paths = getenv("PATH");
 	paths_cp = strdup(paths);
 	/*allocate memory to store executable path by computing size as needed*/

@@ -8,7 +8,7 @@
  * @c: commands count
  */
 
-void creat_ps(char *path, char **av, char **env, int c)
+void creat_ps(char *path, char **av, char **env)
 {
 	int pid, status, ret, cpid;
 
@@ -22,10 +22,6 @@ void creat_ps(char *path, char **av, char **env, int c)
 
 	ret = waitpid(pid, &status, 0);
 	if (ret != pid)
-	{
-		if (av[0] != NULL)
-			printf("hsh: %d: %s: not found\n", c, av[0]);
 		/*Terminate child*/
 		kill(cpid, SIGTERM);
-	}
 }
