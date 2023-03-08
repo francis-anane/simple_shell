@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <signal.h>
 
-char *get_cmd();
+char *get_cmd(int *rd);
 char **get_args(char *args_str);
 char *get_cmd_file(char *cmd_str);
 void cmdl_arg(int ac, int c, char **av);
@@ -19,4 +19,5 @@ void creat_ps(char *path, char **av, char **env);
 void _cd(char *dir, char *sh, int c);
 char *_arg0(char *c_file);
 void piped_cmd(char **av, char **env);
+void free_arr(char **arr);
 #endif

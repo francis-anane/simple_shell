@@ -1,28 +1,18 @@
 #include "main.h"
 /**
  * get_cmd - Gets a string entered fron standard input.
- *
- *
- * Return: A pointer to the string entered.
+ * @rd: An int pointer to check for EOF
+ * Return: A pointer to the string read at stdin.
  */
-char *get_cmd()
+char *get_cmd(int *rd)
 {
-	char *buff, *cmd, *prmt = "($)";
+	char *buff, *in_cmd, *prmt = "($)";
 	size_t n;
-	int rd;
 
-	if (isatty(STDIN_FILENO) == 1)
-		printf("%s", prmt);
-	rd = getline(&buff, &n, stdin);
-	/* Handle Ctrl-D*/
-	if (rd == EOF)
-	{
-		printf("\n");
-		exit(0);
-	}
-	cmd = strsep(&buff, "\n");
-
-	return (cmd);
+	printf("%s", prmt);
+	*rd = getline(&buff, &n, stdin);
+	in_cmd = strsep(&buff, "\n");
+	return (in_cmd);
 
 }
 

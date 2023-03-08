@@ -13,16 +13,16 @@
 int main(int ac, char **av, char **env)
 {
 	char *cmd, *cmd_file, *cmd_cp, *path, **argv;
-	int c = 0;
+	int c = 0, rd = 0;
 
 	cmdl_arg(ac, c, av);
 	if (isatty(STDIN_FILENO) != 1)
 		piped_cmd(av, env);
 
-	while (1)
+	while (rd != EOF)
 	{
 		c++;
-		cmd = get_cmd();
+		cmd = get_cmd(&rd);
 		cmd_cp = strdup(cmd);
 		cmd_file = get_cmd_file(cmd);
 		path = get_path(cmd_file);
@@ -38,7 +38,7 @@ int main(int ac, char **av, char **env)
 
 		else if (strcmp(path, "exit") == 0)
 		{
-			free(argv);
+			free_arr(argv);
 			exit(0);
 		}
 		else
@@ -46,9 +46,13 @@ int main(int ac, char **av, char **env)
 			if (access(path, F_OK) == 0)
 				creat_ps(path, argv, env);
 			else
+			{
 				printf("hsh: %d: %s: not found\n", c, argv[0]);
+			}
+
 		}
+		free_arr(argv);
 	}
-	free(argv);
+	printf("\n");
 	return (0);
 }

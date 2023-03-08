@@ -25,7 +25,10 @@ char *get_path(char *exe)
 		exe_path = malloc(exe_len + tok_len + 2);
 
 		if (exe_path == NULL)
+		{
+			free(paths_cp);
 			return (NULL);
+		}
 		/*creat command path by appending input to path*/
 		strcpy(exe_path, path_tok);
 		strcat(exe_path, "/");

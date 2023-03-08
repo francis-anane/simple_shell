@@ -15,7 +15,7 @@ void piped_cmd(char **av, char **env)
 	while (rd != EOF)
 	{
 		c++;
-		cmd = strsep(&buff, "\n");
+		cmd = strtok(buff, "\n");
 
 		cmd_cp = strdup(cmd);
 		cmd_file = get_cmd_file(cmd);
@@ -38,9 +38,9 @@ void piped_cmd(char **av, char **env)
 			else
 				printf("hsh: %d: %s: not found\n", c, argv[0]);
 		}
+		free_arr(argv);
 		rd = getline(&buff, &n, stdin);
 
 	}
-	free(argv);
 	exit(0);
 }

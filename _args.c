@@ -12,6 +12,9 @@ char **get_args(char *args_str)
 	unsigned int i = 0;
 	char *tok, **args, *arg0;
 
+	if (args_str == NULL)
+		return (NULL);
+
 	/*compute size for malloc*/
 	for (; i < strlen(args_str); i
 ++)
@@ -25,7 +28,7 @@ char **get_args(char *args_str)
 	tok = strtok(args_str, " ");
 	if (tok == NULL)
 	{
-		free(args);
+		free_arr(args);
 		return (NULL);
 	}
 	/* get arguments*/
@@ -33,16 +36,24 @@ char **get_args(char *args_str)
 	i = 0;
 	args[i] = malloc(strlen(arg0) + 1);
 	if (args[i] == NULL)
+	{
+		free_arr(args);
 		return (NULL);
+	}
 	strcpy(args[i], arg0);
+	strcat(args[i], "\0");
 	tok = strtok(NULL, " ");
 	while (tok != NULL)
 	{
 		i++;
 		args[i] = malloc(strlen(tok) + 1);
 		if (args[i] == NULL)
+		{
+			free_arr(args);
 			return (NULL);
+		}
 		strcpy(args[i], tok);
+		strcat(args[i], "\0");
 		tok = strtok(NULL, " ");
 	}
 	args[i + 1] = NULL; /*Add null for execve arg*/

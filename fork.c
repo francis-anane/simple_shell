@@ -19,7 +19,6 @@ void creat_ps(char *path, char **av, char **env)
 		execve(path, av, env);
 		cpid = getpid();
 	}
-
 	ret = waitpid(pid, &status, 0);
 	if (ret != pid)
 		/*Terminate child*/
