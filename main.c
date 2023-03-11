@@ -16,7 +16,7 @@ int main(int ac, char **av, char **env)
 	int c = 0, rd = 0;
 
 	cmdl_arg(ac, c, av);
-	piped_cmd(av, env);
+	/*piped_cmd(av, env);*/
 	while (rd != EOF)
 	{
 		c++;
