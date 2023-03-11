@@ -6,7 +6,7 @@
  */
 char *get_cmd(int *rd)
 {
-	char *in_cmd, *prmt = " ($)";
+	char *in_cmd, *prmt = "($) ";
 	char *buff[] = {NULL};
 	size_t n;
 
