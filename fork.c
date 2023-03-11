@@ -8,7 +8,7 @@
  * @c: commands count
  */
 
-void creat_ps(char *path, char **av, char **env)
+void creat_ps(char *path, char **av, char **env, int c)
 {
 	int pid, status, ret, cpid;
 
@@ -19,8 +19,13 @@ void creat_ps(char *path, char **av, char **env)
 		execve(path, av, env);
 		cpid = getpid();
 	}
+
 	ret = waitpid(pid, &status, 0);
 	if (ret != pid)
+	{
+		if (av[0] != NULL)
+			printf("hsh: %d: %s: Permission denied\n", c, path);
 		/*Terminate child*/
 		kill(cpid, SIGTERM);
+	}
 }

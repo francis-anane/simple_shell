@@ -12,12 +12,11 @@
 
 char *get_cmd(int *rd);
 char **get_args(char *args_str);
-char *get_cmd_file(char *cmd_str);
 void cmdl_arg(int ac, int c, char **av);
 char *get_path(char *exe);
-void creat_ps(char *path, char **av, char **env);
+void creat_ps(char *path, char **av, char **env, int c);
 void _cd(char *dir, char *sh, int c);
 char *_arg0(char *c_file);
 void piped_cmd(char **av, char **env);
-void free_arr(char **arr);
+int free_arr(char **arr);
 #endif

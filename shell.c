@@ -6,28 +6,15 @@
  */
 char *get_cmd(int *rd)
 {
-	char *buff, *in_cmd, *prmt = "($)";
+	char *in_cmd, *prmt = "($)";
+	char *buff[] = {NULL};
 	size_t n;
 
 	printf("%s", prmt);
-	*rd = getline(&buff, &n, stdin);
-	in_cmd = strsep(&buff, "\n");
+	*rd = getline(buff, &n, stdin);
+	in_cmd = strsep(buff, "\n");
 	return (in_cmd);
 
-}
-
-/**
- * get_cmd_file - Get the string to be passed as the file for exec system call.
- * @cmd_str: The string to get command file from.
- * Return: A pointer to the command file string.
- */
-
-char *get_cmd_file(char *cmd_str)
-{
-	char *cmd_file;
-
-	cmd_file = strtok(cmd_str, " ");
-	return (cmd_file);
 }
 
 /**

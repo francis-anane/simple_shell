@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * get_path - Get a path for a commandline executable
+ * get_path - Get a path for a commandline executable.
  * @exe: The commandline file to get path for.
- * Return: A pointer to the path
+ * Return: A pointer to a malloc alloca the path
  */
 
 char *get_path(char *exe)
@@ -44,5 +44,6 @@ char *get_path(char *exe)
 		path_tok = strtok(NULL, ":");
 	}
 	free(paths_cp);
-	return (exe);
+	exe_path = strdup(exe);
+	return (exe_path);
 }
