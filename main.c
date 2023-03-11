@@ -49,6 +49,6 @@ int main(int ac, char **av, char **env)
 		free(path);
 		free_arr(argv);
 	}
-	printf("\n");
+	/*printf("\n");*/
 	exit(0);
 }

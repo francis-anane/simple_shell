@@ -11,7 +11,7 @@ char *get_cmd(int *rd)
 	size_t n;
 
 	if (isatty(STDIN_FILENO) == 1)
-		write(STDOUT_FILENO, prmt, sizeof(prmt));
+		printf("%s", prmt);
 	*rd = getline(buff, &n, stdin);
 	in_cmd = strsep(buff, "\n");
 	return (in_cmd);
