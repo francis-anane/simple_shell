@@ -12,7 +12,7 @@
 
 int main(int ac, char **av, char **env)
 {
-	char *cmd, *cmd_cp, *path, **argv;
+	char *cmd, *cmd_cp, *cmd_file, *path, **argv;
 	int c = 0, rd = 0;
 
 	cmdl_arg(ac, c, av);
@@ -21,34 +21,33 @@ int main(int ac, char **av, char **env)
 		c++;
 		cmd = get_cmd(&rd);
 		cmd_cp = strdup(cmd);
-		if ((strtok(cmd_cp, " ")) == NULL)
+		cmd_file = _cmdfile(cmd_cp);
+		if (cmd_file == NULL)
 		{
-			free(cmd);
-			free(cmd_cp);
+			free_mem(2, cmd, cmd_cp);
 			continue;
 		}
+		path = get_path(cmd_file);
 		argv = get_args(cmd);
-		path = get_path(argv[0]);
 		free(cmd);
-		free(cmd_cp);
 		if (strcmp(path, "exit") == 0)
 		{
-			free(path);
+			free_mem(2, path, cmd_cp);
 			free_arr(argv);
-			break;
+			exit(0);
 		}
 		if (strcmp(path, "cd") == 0)
 			_cd(argv[1], av[0], c);
 		else
 		{
 			if (access(path, F_OK) == 0)
-				creat_ps(path, argv, env, c);
+				creat_ps(path, argv, env, cmd_file, c);
 			else
 				printf("hsh: %d: %s: not found\n", c, argv[0]);
 		}
-		free(path);
+		free_mem(2, path, cmd_cp);
 		free_arr(argv);
 	}
-	/*printf("\n");*/
-	exit(0);
+	printf("\n");
+	return (0);
 }

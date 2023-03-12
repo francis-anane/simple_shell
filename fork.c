@@ -5,10 +5,11 @@
  * @path: Path for the executable.
  * @av: Arguments for the process
  * @env: Envronment Arguments for the process.
+ * @cmdfile: Pointer to the command file
  * @c: commands count
  */
 
-void creat_ps(char *path, char **av, char **env, int c)
+void creat_ps(char *path, char **av, char **env, char *cmdfile, int c)
 {
 	int pid, status, ret, cpid;
 
@@ -24,7 +25,7 @@ void creat_ps(char *path, char **av, char **env, int c)
 	if (ret != pid)
 	{
 		if (av[0] != NULL)
-			printf("hsh: %d: %s: Permission denied\n", c, path);
+			printf("hsh: %d: %s: Permission denied\n", c, cmdfile);
 		/*Terminate child*/
 		kill(cpid, SIGTERM);
 	}

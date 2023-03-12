@@ -24,6 +24,8 @@ char **get_args(char *args_str)
 	if (tok == NULL)
 		return (args);/*to free*/
 	arg0 = _arg0(tok);
+	if (arg0 == NULL)
+		return (args);
 	i = 0;
 	args[i] = malloc(strlen(arg0) + 1);
 	if (args[i] == NULL)
@@ -53,11 +55,21 @@ char **get_args(char *args_str)
 
 char *_arg0(char *c_file)
 {
-	char *arg0, *arg0_tok;
+	char *arg0, *arg0_tok, *c_cp;
 
-	arg0 = rindex(c_file, '/');
+	c_cp = strdup(c_file);
+	arg0 = rindex(c_cp, '/');
 	if (arg0 == NULL)
+	{
+		free(c_cp);
 		return (c_file);
+	}
 	arg0_tok = strtok(arg0, "/");
+	if (arg0_tok == NULL)
+	{
+		free(c_cp);
+		return(c_file);
+	}
+	free(c_cp);
 	return (arg0_tok);
 }
