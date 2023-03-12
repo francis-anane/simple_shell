@@ -34,7 +34,7 @@ int main(int ac, char **av, char **env)
 		{
 			free_mem(2, path, cmd_cp);
 			free_arr(argv);
-			exit(0);
+			exit(127);
 		}
 		if (strcmp(path, "cd") == 0)
 			_cd(argv[1], av[0], c);
@@ -48,6 +48,5 @@ int main(int ac, char **av, char **env)
 		free_mem(2, path, cmd_cp);
 		free_arr(argv);
 	}
-	printf("\n");
 	return (0);
 }
