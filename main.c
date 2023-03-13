@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * main - entry point.
+ * main - entry point
  *
  * Description: A simple shell program to execute commands
  * @ac: Argument count
