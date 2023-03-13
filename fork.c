@@ -2,7 +2,7 @@
 
 /**
  * creat_ps - Creat a child process
- * @path: Path for the executable.
+ * @path: Path for the executable
  * @av: Arguments for the process
  * @env: Envronment Arguments for the process.
  * @cmdfile: Pointer to the command file
