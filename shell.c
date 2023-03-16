@@ -7,7 +7,7 @@
  */
 char *get_cmd(int *rd)
 {
-	char *in_cmd, *prmt = "($) ";
+	char *in_cmd, *cmd, *prmt = "($) ";
 	char *buff[] = {NULL};
 	size_t n;
 
@@ -15,8 +15,9 @@ char *get_cmd(int *rd)
 		write(STDERR_FILENO, prmt, 4);
 	*rd = getline(buff, &n, stdin);
 	in_cmd = strtok(*buff, "\n");
-	/*free(*buff);*/
-	return (in_cmd);
+	cmd = string_dup(in_cmd);
+	free(*buff);
+	return (cmd);
 
 }
 

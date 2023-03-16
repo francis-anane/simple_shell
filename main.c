@@ -22,17 +22,17 @@ int main(int ac, char **av, char **env)
 		cmd = get_cmd(&rd);
 		if (rd == EOF)
 			break;
-
 		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
 		if (cmd_file == NULL)
 		{
-			free(cmd_cp);
+			free_mem(2, cmd_cp, cmd);
 			continue;
 		}
 		path = get_path(cmd_file);
 		arg0 = _arg0(cmd_file);
 		argv = get_args(cmd, arg0);
+		free(cmd);
 		if (_strcmp(path, "exit") == 0)
 			_term(path, cmd_cp, argv);
 		else if (_strcmp(path, "cd") == 0)
@@ -40,7 +40,7 @@ int main(int ac, char **av, char **env)
 		else
 			creat_ps(path, argv, env, cmd_file, c);
 
-		free_mem(2, path, cmd_cp, cmd);
+		free_mem(2, path, cmd_cp);
 		free_arr(argv);
 	}
 	write(STDERR_FILENO, "\n", 1);
