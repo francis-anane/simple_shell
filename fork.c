@@ -12,7 +12,6 @@
 void creat_ps(char *path, char **av, char **env, char *cmdfile, int c)
 {
 	int pid, status, ret, cpid;
-	/*struct stat *buff;*/
 
 	if (access(path, F_OK) == 0)
 	{

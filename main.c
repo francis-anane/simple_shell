@@ -43,6 +43,6 @@ int main(int ac, char **av, char **env)
 		free_mem(2, path, cmd_cp);
 		free_arr(argv);
 	}
-	write(STDERR_FILENO, "\n", 1);
+	write(STDOUT_FILENO, "\n", 1);
 	return (0);
 }
