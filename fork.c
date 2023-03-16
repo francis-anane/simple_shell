@@ -25,6 +25,10 @@ void creat_ps(char *path, char **av, char **env, char *cmdfile, int c)
 		ret = waitpid(pid, &status, 0);
 		if (ret != pid)
 		{
+			_print_err(1, "hsh: ");
+			print_number_err(c);
+			_print_err(2, ": ", cmdfile);
+			_print_err(1, ": permission denied\n");
 			kill(cpid, SIGTERM);
 		}
 	}

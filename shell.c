@@ -32,8 +32,11 @@ void cmdl_arg(int ac, char **av, int c)
 	if (ac > 1)
 	{
 		if (access(av[1], F_OK) == 0)
-			/*printf("%s: %d: can't open %s\n", av[0], c, av[1]);*/
-			perror(av[0]);
+		{
+			_print_err(2, av[0], ": ");
+			print_number_err(c);
+			_print_err(3, ": can't open ", av[1], "\n");
+		}
 		exit(0);
 	}
 }
