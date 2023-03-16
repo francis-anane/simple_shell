@@ -12,6 +12,8 @@
 #include <stdarg.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 void print_number_err(int n);
 void _print_err(const unsigned int n, ...);
