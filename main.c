@@ -12,41 +12,36 @@
 
 int main(int ac, char **av, char **env)
 {
-	char *cmd, *cmd_cp, *cmd_file, *path, **argv;
-	int c = 0, rd = 0;
+	char *cmd, *cmd_cp, *cmd_file, *path, **argv, *arg0;
+	int rd = 0;
 
-	cmdl_arg(ac, c, av);
-	while (rd != EOF)
+	cmdl_arg(ac, av);
+	while (1)
 	{
-		c++;
 		cmd = get_cmd(&rd);
-		cmd_cp = strdup(cmd);
+		if (rd == EOF)
+			break;
+
+		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
 		if (cmd_file == NULL)
 		{
-			free_mem(2, cmd, cmd_cp);
+			free(cmd_cp);
 			continue;
 		}
 		path = get_path(cmd_file);
-		argv = get_args(cmd);
-		free(cmd);
-		if (strcmp(path, "exit") == 0)
-		{
-			free_mem(2, path, cmd_cp);
-			free_arr(argv);
-			exit(127);
-		}
-		if (strcmp(path, "cd") == 0)
-			_cd(argv[1], av[0], c);
+		arg0 = _arg0(cmd_file);
+		argv = get_args(cmd, arg0);
+		if (_strcmp(path, "exit") == 0)
+			_term(path, cmd_cp, argv);
+		else if (_strcmp(path, "cd") == 0)
+			_cd(argv[1]);
 		else
-		{
-			if (access(path, F_OK) == 0)
-				creat_ps(path, argv, env, cmd_file, c);
-			else
-				printf("hsh: %d: %s: not found\n", c, argv[0]);
-		}
-		free_mem(2, path, cmd_cp);
+			creat_ps(path, argv, env);
+
+		free_mem(2, path, cmd_cp, cmd);
 		free_arr(argv);
 	}
+	write(STDERR_FILENO, "\n", 1);
 	return (0);
 }

@@ -9,24 +9,28 @@
  * @c: commands count
  */
 
-void creat_ps(char *path, char **av, char **env, char *cmdfile, int c)
+void creat_ps(char *path, char **av, char **env)
 {
 	int pid, status, ret, cpid;
+	/*struct stat *buff;*/
 
-	pid = fork();
-
-	if (pid == 0)
+	if (access(path, F_OK) == 0)
 	{
-		execve(path, av, env);
-		cpid = getpid();
+		pid = fork();
+		if (pid == 0)
+		{
+			execve(path, av, env);
+			cpid = getpid();
+		}
+		ret = waitpid(pid, &status, 0);
+		if (ret != pid)
+		{
+			perror(av[0]);
+			kill(cpid, SIGTERM);
+		}
 	}
-
-	ret = waitpid(pid, &status, 0);
-	if (ret != pid)
+	else
 	{
-		if (av[0] != NULL)
-			printf("hsh: %d: %s: Permission denied\n", c, cmdfile);
-		/*Terminate child*/
-		kill(cpid, SIGTERM);
+		perror("hsh ");
 	}
 }
