@@ -9,7 +9,7 @@
  * @c: commands count
  */
 
-void creat_ps(char *path, char **av, char **env)
+void creat_ps(char *path, char **av, char **env, char *cmdfile, int c)
 {
 	int pid, status, ret, cpid;
 	/*struct stat *buff;*/
@@ -25,12 +25,14 @@ void creat_ps(char *path, char **av, char **env)
 		ret = waitpid(pid, &status, 0);
 		if (ret != pid)
 		{
-			perror(av[0]);
 			kill(cpid, SIGTERM);
 		}
 	}
 	else
 	{
-		perror("hsh ");
+		_print_err(1, "hsh: ");
+		print_number_err(c);
+		_print_err(2, ": ", cmdfile);
+		_print_err(1, ": not found\n");
 	}
 }

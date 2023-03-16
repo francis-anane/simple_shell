@@ -7,13 +7,17 @@
  * @c: Number of entered commands in the shell.
  */
 
-void _cd(char *dir)
+void _cd(char *dir, char *sh, int c)
 {
 	int rt;
 
 	rt = chdir(dir);
 	if (rt < 0)
-		perror("hsh ");
+	{
+		_print_err(2, sh, ": ");
+		print_number_err(c);
+		_print_err(3, ": cd: can't cd to ", dir, "\n");
+	}
 }
 
 /**

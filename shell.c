@@ -27,7 +27,7 @@ char *get_cmd(int *rd)
  * @c: command count
  */
 
-void cmdl_arg(int ac, char **av)
+void cmdl_arg(int ac, char **av, int c)
 {
 	if (ac > 1)
 	{

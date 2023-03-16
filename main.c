@@ -13,11 +13,12 @@
 int main(int ac, char **av, char **env)
 {
 	char *cmd, *cmd_cp, *cmd_file, *path, **argv, *arg0;
-	int rd = 0;
+	int rd = 0, c = 0;
 
-	cmdl_arg(ac, av);
+	cmdl_arg(ac, av, c);
 	while (1)
 	{
+		c++;
 		cmd = get_cmd(&rd);
 		if (rd == EOF)
 			break;
@@ -35,9 +36,9 @@ int main(int ac, char **av, char **env)
 		if (_strcmp(path, "exit") == 0)
 			_term(path, cmd_cp, argv);
 		else if (_strcmp(path, "cd") == 0)
-			_cd(argv[1]);
+			_cd(argv[1], av[0], c);
 		else
-			creat_ps(path, argv, env);
+			creat_ps(path, argv, env, cmd_file, c);
 
 		free_mem(2, path, cmd_cp, cmd);
 		free_arr(argv);

@@ -13,6 +13,8 @@
 #include <sys/stat.h>
 #include <errno.h>
 
+void print_number_err(int n);
+void _print_err(const unsigned int n, ...);
 char *from_lindex(char *str, char delim);
 char *after_lindex(char *str, char delim);
 char *from_findex(char *str, char delim);
@@ -23,10 +25,10 @@ int array_size(char **arr);
 int token_count(char *str, const char delim);
 char *get_cmd(int *rd);
 char **get_args(char *args_str, char *arg0);
-void cmdl_arg(int ac, char **av);
+void cmdl_arg(int ac, char **av, int c);
 char *get_path(char *exe);
-void creat_ps(char *path, char **av, char **env);
-void _cd(char *dir);
+void creat_ps(char *path, char **av, char **env, char *cmdfile, int c);
+void _cd(char *dir, char *sh, int c);
 char *_arg0(char *c_file);
 char *_cmdfile(char *cmd_str);
 int free_arr(char **arr);
@@ -34,4 +36,5 @@ void free_mem(const unsigned int n, ...);
 int string_len(char *str);
 char *string_dup(char *str);
 void _term(char *cmd, char *cmd_cp, char **argv);
+void _putchar_err(char c);
 #endif
