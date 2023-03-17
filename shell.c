@@ -12,7 +12,7 @@ char *get_cmd(int *rd)
 	size_t n;
 
 	if (isatty(STDIN_FILENO) == 1)
-		write(STDERR_FILENO, prmt, 4);
+		_print_err(1, prmt);
 	*rd = getline(buff, &n, stdin);
 	in_cmd = strtok(*buff, "\n");
 	cmd = string_dup(in_cmd);

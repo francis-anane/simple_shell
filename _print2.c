@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdarg.h>
+#include "main.h"
+
 void _putchar_err(char c);
 
 /**
@@ -24,18 +24,11 @@ void _print_err(const unsigned int n, ...)
 	for (i = 0; i < n; i++)
 	{
 		str = va_arg(ap, char*);
-		while (*str)
-		{
-			_putchar_err(*str);
-			offst++;
-			str++;
-		}
-		str -= offst;
+		write(STDERR_FILENO, str, string_len(str));
 	}
 
 	va_end(ap);
 }
-#include "main.h"
 
 /**
  * _putchar_err - print a character to stderr

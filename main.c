@@ -21,7 +21,7 @@ int main(int ac, char **av, char **env)
 		c++;
 		cmd = get_cmd(&rd);
 		if (rd == EOF)
-			break;
+			kill(getpid(), SIGINT);
 		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
 		if (cmd_file == NULL)
@@ -43,6 +43,5 @@ int main(int ac, char **av, char **env)
 		free_mem(2, path, cmd_cp);
 		free_arr(argv);
 	}
-	/*write(STDOUT_FILENO, "\n", 1);*/
 	return (0);
 }
