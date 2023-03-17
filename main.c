@@ -22,7 +22,8 @@ int main(int ac, char **av, char **env)
 		cmd = get_cmd(&rd);
 		if (rd == EOF)
 		{
-			_putchar_err('\n');
+			if (isatty(STDIN_FILENO) == 1)
+				_putchar('\n');
 			return (0);
 		}
 		if (cmd == NULL)

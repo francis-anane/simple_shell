@@ -15,6 +15,8 @@
 #include <sys/time.h>
 #include <sys/resource.h>
 
+void _print(const unsigned int n, ...);
+void _putchar(char c);
 void print_number_err(int n);
 void _print_err(const unsigned int n, ...);
 char *from_lindex(char *str, char delim);
