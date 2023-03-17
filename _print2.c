@@ -12,7 +12,6 @@ void _putchar_err(char c);
 void _print_err(const unsigned int n, ...)
 {
 	unsigned int i;
-	int offst = 0;
 	va_list ap;
 	char *str;
 
