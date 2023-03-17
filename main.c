@@ -21,7 +21,7 @@ int main(int ac, char **av, char **env)
 		c++;
 		cmd = get_cmd(&rd);
 		if (rd == EOF)
-			kill(getpid(), SIGINT);
+			return (0);
 		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
 		if (cmd_file == NULL)
