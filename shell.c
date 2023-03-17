@@ -14,6 +14,11 @@ char *get_cmd(int *rd)
 	if (isatty(STDIN_FILENO) == 1)
 		_print_err(1, prmt);
 	*rd = getline(buff, &n, stdin);
+	if (string_len(*buff) == 1 || *rd == EOF)
+	{
+		free(*buff);
+		return (NULL);
+	}
 	in_cmd = strtok(*buff, "\n");
 	cmd = string_dup(in_cmd);
 	free(*buff);

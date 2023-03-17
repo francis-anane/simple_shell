@@ -21,7 +21,12 @@ int main(int ac, char **av, char **env)
 		c++;
 		cmd = get_cmd(&rd);
 		if (rd == EOF)
+		{
+			_putchar_err('\n');
 			return (0);
+		}
+		if (cmd == NULL)
+			continue;
 		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
 		if (cmd_file == NULL)
@@ -39,7 +44,6 @@ int main(int ac, char **av, char **env)
 			_cd(argv[1], av[0], c);
 		else
 			creat_ps(path, argv, env, cmd_file, c);
-
 		free_mem(2, path, cmd_cp);
 		free_arr(argv);
 	}

@@ -9,7 +9,7 @@
 
 char *string_dup(char *str)
 {
-	int size = 0, i = 0;
+	int size, i = 0;
 	char *dup;
 
 	size = string_len(str);
@@ -40,12 +40,8 @@ int string_len(char *str)
 
 	if (str == NULL)
 		return (0);
-	while (*str)
-	{
+	while (str[lnt] != '\0')
 		lnt++;
-		str++;
-	}
-	str -= lnt;
 	return (lnt);
 }
 
