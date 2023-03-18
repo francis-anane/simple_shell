@@ -25,7 +25,6 @@ char **get_args(char *args_str, char *arg0)
 	if (args[i] == NULL)
 		return (args);/*to free*/
 	_strcpy(args[i], arg0);
-	/*_strcat(args[i], "\0");*/
 	tok = strtok(NULL, " ");
 	while (tok != NULL)
 	{
@@ -34,7 +33,6 @@ char **get_args(char *args_str, char *arg0)
 		if (args[i] == NULL)
 			return (args);
 		_strcpy(args[i], tok);
-		/*_strcat(args[i], "\0");*/
 		tok = strtok(NULL, " ");
 	}
 	args[i + 1] = NULL; /*Add null for execve arg*/
@@ -49,15 +47,10 @@ char **get_args(char *args_str, char *arg0)
 
 char *_arg0(char *c_file)
 {
-	char *arg0, *c_cp;
+	char *arg0;
 
-	c_cp = string_dup(c_file);
-	arg0 = after_lindex(c_cp, '/');
-	if (arg0 == NULL)
-	{
-		free(c_cp);
+	arg0 = after_lindex(c_file, '/');
+	if (*arg0 == '\0')
 		return (c_file);
-	}
-	free(c_cp);
 	return (arg0);
 }

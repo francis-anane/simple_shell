@@ -11,24 +11,25 @@
 
 void creat_ps(char *path, char **av, char **env, char *cmdfile, int c)
 {
-	int pid, status, ret, cpid;
+	int pid, status;
+	DIR *dir;
 
 	if (access(path, F_OK) == 0)
 	{
-		pid = fork();
-		if (pid == 0)
+		if ((dir = opendir(path)) != NULL)
 		{
-			execve(path, av, env);
-			cpid = getpid();
-		}
-		ret = waitpid(pid, &status, 0);
-		if (ret != pid)
-		{
+			closedir(dir);
 			_print_err(1, "hsh: ");
 			print_number_err(c);
 			_print_err(2, ": ", cmdfile);
 			_print_err(1, ": permission denied\n");
-			kill(cpid, SIGTERM);
+		}
+		else
+		{
+			pid = fork();
+			if (pid == 0)
+				execve(path, av, env);
+			waitpid(pid, &status, 0);
 		}
 	}
 	else

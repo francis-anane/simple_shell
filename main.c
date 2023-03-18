@@ -24,7 +24,7 @@ int main(int ac, char **av, char **env)
 		{
 			if (isatty(STDIN_FILENO) == 1)
 				_putchar('\n');
-			return (0);
+			exit(0);
 		}
 		if (cmd == NULL)
 			continue;
@@ -36,7 +36,7 @@ int main(int ac, char **av, char **env)
 			continue;
 		}
 		path = get_path(cmd_file);
-		arg0 = _arg0(cmd_file);
+		arg0 = _arg0(cmd_file) ;
 		argv = get_args(cmd, arg0);
 		if (_strcmp(path, "exit") == 0)
 			_term(path, cmd, cmd_cp, argv);
@@ -44,7 +44,7 @@ int main(int ac, char **av, char **env)
 			_cd(argv[1], av[0], c);
 		else
 			creat_ps(path, argv, env, cmd_file, c);
-		free_mem(2, cmd_cp, cmd);
+		free_mem(3, path, cmd_cp, cmd);
 		free_arr(argv);
 	}
 	return (0);

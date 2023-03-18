@@ -14,6 +14,7 @@
 #include <errno.h>
 #include <sys/time.h>
 #include <sys/resource.h>
+#include <dirent.h>
 
 void _print(const unsigned int n, ...);
 void _putchar(char c);
