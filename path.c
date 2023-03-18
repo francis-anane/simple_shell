@@ -13,7 +13,7 @@ char *get_path(char *exe)
 
 	/* get path of shell executables*/
 	if (exe == NULL)
-		return ("\0");
+		return (NULL);
 	paths = getenv("PATH");
 	paths_cp = string_dup(paths);
 	/*allocate memory to store executable path by computing size as needed*/
@@ -27,7 +27,7 @@ char *get_path(char *exe)
 		if (exe_path == NULL)
 		{
 			free(paths_cp);
-			return ("\0");
+			return (NULL);
 		}
 		/*creat command path by appending input to path*/
 		_strcpy(exe_path, path_tok);

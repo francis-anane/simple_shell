@@ -17,7 +17,7 @@ char *string_dup(char *str)
 		return (NULL);
 	size += 1;/*for \0*/
 
-	dup = malloc(size * sizeof(char));
+	dup = malloc(size);
 	if (dup == NULL)
 		return (NULL);
 
@@ -36,13 +36,13 @@ char *string_dup(char *str)
 
 int string_len(char *str)
 {
-	int lnt = 0;
+	int len = 0;
 
 	if (str == NULL)
 		return (0);
-	while (str[lnt] != '\0')
-		lnt++;
-	return (lnt);
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }
 
 /**

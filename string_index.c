@@ -15,7 +15,7 @@ char *from_lindex(char *str, char delim)
 	int indx = 0, i, check, len;
 
 	if (str == NULL)
-		return ("\0");
+		return (NULL);
 	check = string_len(str);
 	len = string_len(str);
 
@@ -28,7 +28,7 @@ char *from_lindex(char *str, char delim)
 		}
 	}
 	if (check == len)
-		return ("\0");
+		return (NULL);
 
 	return (str + indx);
 }
@@ -48,7 +48,7 @@ char *after_lindex(char *str, char delim)
 	int indx = 0, i, check, len;
 
 	if (str == NULL)
-		return ("\0");
+		return (NULL);
 	check = string_len(str);
 	len = string_len(str);
 
@@ -61,7 +61,7 @@ char *after_lindex(char *str, char delim)
 		}
 	}
 	if (check == len)
-		return ("\0");
+		return (NULL);
 	return (str + (indx + 1));
 }
 
@@ -79,7 +79,7 @@ char *from_findex(char *str, char delim)
 	int indx, check, len;
 
 	if (str == NULL)
-		return ("\0");
+		return (NULL);
 	check = string_len(str);
 	len = string_len(str);
 
@@ -92,7 +92,7 @@ char *from_findex(char *str, char delim)
 		}
 	}
 	if (check == len)
-		return ("\0");
+		return (NULL);
 
 	return (str + indx);
 }

@@ -10,7 +10,7 @@
 char **get_args(char *args_str, char *arg0)
 {
 	int size;
-	unsigned int i = 0;
+	int i = 0;
 	char *tok, **args;
 
 	size = token_count(args_str, ' ');
@@ -25,7 +25,7 @@ char **get_args(char *args_str, char *arg0)
 	if (args[i] == NULL)
 		return (args);/*to free*/
 	_strcpy(args[i], arg0);
-	_strcat(args[i], "\0");
+	/*_strcat(args[i], "\0");*/
 	tok = strtok(NULL, " ");
 	while (tok != NULL)
 	{
@@ -34,7 +34,7 @@ char **get_args(char *args_str, char *arg0)
 		if (args[i] == NULL)
 			return (args);
 		_strcpy(args[i], tok);
-		_strcat(args[i], "\0");
+		/*_strcat(args[i], "\0");*/
 		tok = strtok(NULL, " ");
 	}
 	args[i + 1] = NULL; /*Add null for execve arg*/

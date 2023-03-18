@@ -38,14 +38,13 @@ int main(int ac, char **av, char **env)
 		path = get_path(cmd_file);
 		arg0 = _arg0(cmd_file);
 		argv = get_args(cmd, arg0);
-		free(cmd);
 		if (_strcmp(path, "exit") == 0)
-			_term(path, cmd_cp, argv);
+			_term(path, cmd, cmd_cp, argv);
 		else if (_strcmp(path, "cd") == 0)
 			_cd(argv[1], av[0], c);
 		else
 			creat_ps(path, argv, env, cmd_file, c);
-		free_mem(2, path, cmd_cp);
+		free_mem(2, cmd_cp, cmd);
 		free_arr(argv);
 	}
 	return (0);

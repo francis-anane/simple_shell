@@ -39,6 +39,6 @@ int free_arr(char **arr);
 void free_mem(const unsigned int n, ...);
 int string_len(char *str);
 char *string_dup(char *str);
-void _term(char *cmd, char *cmd_cp, char **argv);
+void _term(char *path, char *cmd, char *cmd_cp, char **argv);
 void _putchar_err(char c);
 #endif
