@@ -36,7 +36,7 @@ int main(int ac, char **av, char **env)
 			continue;
 		}
 		path = get_path(cmd_file);
-		arg0 = _arg0(cmd_file) ;
+		arg0 = _arg0(cmd_file);
 		argv = get_args(cmd, arg0);
 		if (_strcmp(path, "exit") == 0)
 			_term(path, cmd, cmd_cp, argv);

@@ -14,7 +14,12 @@ char *get_cmd(int *rd)
 	if (isatty(STDIN_FILENO) == 1)
 		_print_err(1, prmt);
 	*rd = getline(buff, &n, stdin);
-	if (string_len(*buff) == 1 || *rd == EOF)
+	if (*rd == EOF)
+	{
+		free(*buff);
+		return (NULL);
+	}
+	else if (string_len(*buff) == 1)
 	{
 		free(*buff);
 		return (NULL);

@@ -16,7 +16,8 @@ void creat_ps(char *path, char **av, char **env, char *cmdfile, int c)
 
 	if (access(path, F_OK) == 0)
 	{
-		if ((dir = opendir(path)) != NULL)
+		dir = opendir(path);
+		if (dir != NULL)
 		{
 			closedir(dir);
 			_print_err(1, "hsh: ");
