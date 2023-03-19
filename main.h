@@ -32,14 +32,14 @@ char *get_cmd(int *rd);
 char **get_args(char *args_str, char *arg0);
 void cmdl_arg(int ac, char **av, int c);
 char *get_path(char *exe);
-void creat_ps(char *path, char **av, char **env, char *cmdfile, int c);
-void _cd(char *dir, char *sh, int c);
+void creat_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s);
+void _cd(char *dir, char *sh, int c, int *s);
 char *_arg0(char *c_file);
 char *_cmdfile(char *cmd_str);
 int free_arr(char **arr);
 void free_mem(const unsigned int n, ...);
 int string_len(char *str);
 char *string_dup(char *str);
-void _term(char *path, char *cmd, char *cmd_cp, char **argv);
+void _term(char *path, char *cmd, char *cmd_cp, char **argv, int *s);
 void _putchar_err(char c);
 #endif
