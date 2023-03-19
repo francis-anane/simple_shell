@@ -31,21 +31,17 @@ int array_size(char **arr)
 
 int token_count(char *str, const char delim)
 {
-	int tokens = 0;
+	int tokens = 0, i = 0;
 
 	if (str == NULL)
 		return (0);
 	if (delim == ' ')
 		tokens++;
-	while (*str)
+	while (str[i] != '\0')
 	{
-		if (*str == delim)
+		if (str[i] == delim)
 			tokens++;
-		str++;
+		i++;
 	}
-	if (delim == ' ')
-		str -= (tokens - 1);
-	else
-		str -= tokens;
 	return (tokens);
 }

@@ -15,8 +15,7 @@ char **get_args(char *args_str, char *arg0)
 
 	size = token_count(args_str, ' ');
 	args = malloc((size + 1) * sizeof(char *));
-	if (args == NULL)
-		return (NULL);
+	if (args == NULL)		return (NULL);
 	tok = strtok(args_str, " ");
 	if (tok == NULL)
 		return (args);/*to free*/

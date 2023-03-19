@@ -62,6 +62,15 @@ char *_cmdfile(char *cmd_str)
 {
 	char *cmd_file;
 
-	cmd_file = strtok(cmd_str, " ");
+	cmd_file = strtok(cmd_str, " \t");
+	while(cmd_file != NULL)
+	{
+		if (_strcmp(cmd_file, "\t") == 0)
+			cmd_file = strtok(NULL, "\t");
+		else if (_strcmp(cmd_file, " ") == 0)
+			cmd_file = strtok(NULL, " ");
+		else
+			break;
+	}
 	return (cmd_file);
 }

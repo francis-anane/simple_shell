@@ -13,7 +13,7 @@
 int main(int ac, char **av, char **env)
 {
 	char *cmd, *cmd_cp, *cmd_file, *path, **argv, *arg0;
-	int rd = 0, c = 0;
+	int rd = 0, c = 0, s = 0;
 
 	cmdl_arg(ac, av, c);
 	while (1)
@@ -24,7 +24,7 @@ int main(int ac, char **av, char **env)
 		{
 			if (isatty(STDIN_FILENO) == 1)
 				_putchar('\n');
-			exit(0);
+			exit(s);
 		}
 		if (cmd == NULL)
 			continue;
@@ -39,13 +39,13 @@ int main(int ac, char **av, char **env)
 		arg0 = _arg0(cmd_file);
 		argv = get_args(cmd, arg0);
 		if (_strcmp(path, "exit") == 0)
-			_term(path, cmd, cmd_cp, argv);
+			_term(path, cmd, cmd_cp, argv, &s);
 		else if (_strcmp(path, "cd") == 0)
-			_cd(argv[1], av[0], c);
+			_cd(argv[1], av[0], c, &s);
 		else
-			creat_ps(path, argv, env, cmd_file, c);
+			creat_ps(av[0], path, argv, env, cmd_file, c, &s);
 		free_mem(3, path, cmd_cp, cmd);
 		free_arr(argv);
 	}
-	return (0);
+	exit(s);
 }
