@@ -12,7 +12,7 @@
 
 int main(int ac, char **av, char **env)
 {
-	char *cmd, *cmd_cp, *cmd_file, *path, **argv, *arg0;
+	char *cmd, *cmd_cp, *cmd_file, *path, **argv;/*arg0;*/
 	int rd = 0, c = 0, s = 0;
 
 	cmdl_arg(ac, av, c);
@@ -36,8 +36,8 @@ int main(int ac, char **av, char **env)
 			continue;
 		}
 		path = get_path(cmd_file);
-		arg0 = _arg0(cmd_file);
-		argv = get_args(cmd, arg0);
+		/*arg0 = _arg0(cmd_file);*/
+		argv = get_args(cmd, cmd_file);
 		if (_strcmp(path, "exit") == 0)
 			_term(path, cmd, cmd_cp, argv, &s);
 		else if (_strcmp(path, "cd") == 0)
