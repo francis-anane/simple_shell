@@ -10,7 +10,7 @@
 char **get_args(char *args_str, char *arg0)
 {
 	int size;
-	int i = 0;
+	int i;
 	char *tok, **args;
 
 	size = token_count(args_str, ' ');
@@ -22,7 +22,7 @@ char **get_args(char *args_str, char *arg0)
 	i = 0;
 	args[i] = malloc(string_len(arg0) + 1);
 	if (args[i] == NULL)
-		return (args);/*to free*/
+		return (args);
 	_strcpy(args[i], arg0);
 	tok = strtok(NULL, " ");
 	while (tok != NULL)
