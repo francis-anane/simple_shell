@@ -16,6 +16,7 @@
 #include <sys/resource.h>
 #include <dirent.h>
 
+int _unset(char *cmd_str, __attribute__((unused)) char **path);
 void _print(const unsigned int n, ...);
 void _putchar(char c);
 void print_number_err(int n);
@@ -31,7 +32,7 @@ int token_count(char *str, const char delim);
 char *get_cmd(int *rd);
 char **get_args(char *args_str, char *arg0);
 void cmdl_arg(int ac, char **av, int c);
-char *get_path(char *exe);
+char *get_path(char *exe, char *paths);
 void creat_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s);
 void _cd(char *dir, char *sh, int c, int *s);
 char *_arg0(char *c_file);

@@ -36,3 +36,22 @@ void _term(char *path, char *cmd, char *cmd_cp, char **argv, int *s)
 	free_arr(argv);
 	exit(*s);
 }
+
+/**
+ * _unset - Unset environment variable of the shell executions path
+ * @cmd_str: command string
+ * @path: Pointer to the executions path.
+ * Return: 0 on success, -1 on failure
+ */
+
+int _unset(char *cmd_str, __attribute__((unused)) char **path)
+{
+	int ret = -1;
+	if (_strcmp(cmd_str, "unset PATH") == 0)
+	{
+		*path = "\0";
+		free(cmd_str);
+		ret = 0;
+	}
+	return (ret);
+}

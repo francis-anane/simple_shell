@@ -12,10 +12,11 @@
 
 int main(int ac, char **av, char **env)
 {
-	char *cmd, *cmd_cp, *cmd_file, *path, **argv;/*arg0;*/
+	char *cmd, *cmd_cp, *cmd_file, *path, **argv, *paths;/*arg0;*/
 	int rd = 0, c = 0, s = 0;
 
 	cmdl_arg(ac, av, c);
+	paths = getenv("PATH");
 	while (1)
 	{
 		c++;
@@ -28,6 +29,8 @@ int main(int ac, char **av, char **env)
 		}
 		if (cmd == NULL)
 			continue;
+		if((_unset(cmd, &paths)) == 0)
+			continue;
 		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
 		if (cmd_file == NULL)
@@ -35,7 +38,7 @@ int main(int ac, char **av, char **env)
 			free_mem(2, cmd_cp, cmd);
 			continue;
 		}
-		path = get_path(cmd_file);
+		path = get_path(cmd_file, paths);
 		/*arg0 = _arg0(cmd_file);*/
 		argv = get_args(cmd, cmd_file);
 		if (_strcmp(path, "exit") == 0)

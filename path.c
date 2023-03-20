@@ -6,17 +6,15 @@
  * Return: A pointer to a malloc alloca the path
  */
 
-char *get_path(char *exe)
+char *get_path(char *exe, char *paths)
 {
-	char *paths, *paths_cp, *exe_path, *path_tok;
+	char *paths_cp, *exe_path, *path_tok;
 	int tok_len, exe_len;
 
 	/* get path of shell executables*/
 	if (exe == NULL)
 		return (NULL);
-	paths = getenv("PATH");
 	paths_cp = string_dup(paths);
-	/*allocate memory to store executable path by computing size as needed*/
 	path_tok = strtok(paths_cp, ":");
 	exe_len = string_len(exe);
 	while (path_tok != NULL)
