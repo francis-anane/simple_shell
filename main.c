@@ -17,7 +17,7 @@ int main(int ac, char **av, char **env)
 
 	cmdl_arg(ac, av, c);
 	paths = getenv("PATH");
-	while (1)
+ 	while (1)
 	{
 		c++;
 		cmd = get_cmd(&rd);
