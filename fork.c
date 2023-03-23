@@ -11,18 +11,10 @@
  * @s: pointer to programs excution status.
  */
 
-void creat_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s)
+void new_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s)
 {
 	int pid, status, ret;
 	DIR *dir;
-
-	/*char *buff = NULL, *curdir;
-	  size_t n = 1024;*/
-
-	/*curdir = getcwd(buff, n);
-	_strcat(curdir, "/");
-	_strcat(curdir, cf);
-	printf("%s\n", curdir);*/
 
 	if ((access(p, F_OK) == 0) && (*s == 1))
 	{

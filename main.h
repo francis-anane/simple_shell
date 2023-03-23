@@ -34,7 +34,7 @@ char *get_cmd(int *rd);
 char **get_args(char *args_str, char *arg0);
 void cmdl_arg(int ac, char **av, int c);
 char *get_path(char *exe, char *paths, int *exec_perm);
-void creat_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s);
+void new_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s);
 void _cd(char *dir, char *sh, int c, int *st);
 char *_arg0(char *c_file);
 char *_cmdfile(char *cmd_str);

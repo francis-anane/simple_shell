@@ -11,7 +11,7 @@
 int cdir_exec(char *exefile, int *exec_perm)
 {
 	char *buff = NULL, *curdir;
-        size_t n = 1024;
+	size_t n = 1024;
 
 	*exec_perm = 1;
 	curdir = getcwd(buff, n);

@@ -3,7 +3,7 @@
 /**
  * _cd - Change directory
  * @dir: The directory to change to
- * @sh: The commandline shell that is running.
+ * @sh: Pointer to the program name string
  * @c: Number of entered commands in the shell.
  * @s: Pointer to exit status
  */
@@ -28,6 +28,7 @@ void _cd(char *dir, char *sh, int c, int *s)
  * @cmd_cp: A pointer to a memory to free
  * @path: memory to free
  * @argv: A pointer to a malloc allocated array of strings.
+ * @s: Pointer to exit status.
  */
 
 void _term(char *path, char *cmd, char *cmd_cp, char **argv, int *s)
@@ -47,6 +48,7 @@ void _term(char *path, char *cmd, char *cmd_cp, char **argv, int *s)
 int _unset(char *cmd_str, __attribute__((unused)) char **path)
 {
 	int ret = -1;
+
 	if (_strcmp(cmd_str, "unset PATH") == 0)
 	{
 		*path = "\0";

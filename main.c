@@ -17,7 +17,7 @@ int main(int ac, char **av, char **env)
 
 	cmdl_arg(ac, av, c);
 	paths = getenv("PATH");
- 	while (1)
+	while (1)
 	{
 		c++;
 		cmd = get_cmd(&rd);
@@ -29,7 +29,7 @@ int main(int ac, char **av, char **env)
 		}
 		if (cmd == NULL)
 			continue;
-		if((_unset(cmd, &paths)) == 0)
+		if ((_unset(cmd, &paths)) == 0)
 			continue;
 		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
@@ -46,7 +46,7 @@ int main(int ac, char **av, char **env)
 		else if (_strcmp(path, "cd") == 0)
 			_cd(argv[1], av[0], c, &st);
 		else
-			creat_ps(av[0], path, argv, env, cmd_file, c, &st);
+			new_ps(av[0], path, argv, env, cmd_file, c, &st);
 		free_mem(3, path, cmd_cp, cmd);
 		free_arr(argv);
 	}
