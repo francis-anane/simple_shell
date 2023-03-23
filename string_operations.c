@@ -72,8 +72,8 @@ char *_strcat(char *dest, char *src)
 
 /**
  * _strcmp - Compares pointers to two strings.
- * @s1: A pointer to the first string to be compared.
- * @s2: A pointer to the second string to be compared.
+ * @str1: A pointer to the first string to be compared.
+ * @str2: A pointer to the second string to be compared.
  *
  * Return: If str1 < str2, the negative difference of the first
  * unmatched characters.
@@ -82,15 +82,15 @@ char *_strcat(char *dest, char *src)
  * unmatched characters.
  */
 
-int _strcmp(char *s1, char *s2)
+int _strcmp(char *str1, char *str2)
 {
-	while (*s1 && *s2 && *s1 == *s2)
+	while (*str1 && *str2 && *str1 == *str2)
 	{
-		s1++;
-		s2++;
+		str1++;
+		str2++;
 	}
 
-	return (*s1 - *s2);
+	return (*str1 - *str2);
 }
 
 /**

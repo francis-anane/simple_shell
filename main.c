@@ -13,7 +13,7 @@
 int main(int ac, char **av, char **env)
 {
 	char *cmd, *cmd_cp, *cmd_file, *path, **argv, *paths;/*arg0;*/
-	int rd = 0, c = 0, s = 0;
+	int rd = 0, c = 0, st = 0;
 
 	cmdl_arg(ac, av, c);
 	paths = getenv("PATH");
@@ -25,7 +25,7 @@ int main(int ac, char **av, char **env)
 		{
 			if (isatty(STDIN_FILENO) == 1)
 				_putchar('\n');
-			exit(s);
+			exit(st);
 		}
 		if (cmd == NULL)
 			continue;
@@ -38,17 +38,17 @@ int main(int ac, char **av, char **env)
 			free_mem(2, cmd_cp, cmd);
 			continue;
 		}
-		path = get_path(cmd_file, paths);
+		path = get_path(cmd_file, paths, &st);
 		/*arg0 = _arg0(cmd_file);*/
 		argv = get_args(cmd, cmd_file);
 		if (_strcmp(path, "exit") == 0)
-			_term(path, cmd, cmd_cp, argv, &s);
+			_term(path, cmd, cmd_cp, argv, &st);
 		else if (_strcmp(path, "cd") == 0)
-			_cd(argv[1], av[0], c, &s);
+			_cd(argv[1], av[0], c, &st);
 		else
-			creat_ps(av[0], path, argv, env, cmd_file, c, &s);
+			creat_ps(av[0], path, argv, env, cmd_file, c, &st);
 		free_mem(3, path, cmd_cp, cmd);
 		free_arr(argv);
 	}
-	exit(s);
+	exit(st);
 }

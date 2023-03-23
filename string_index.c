@@ -26,7 +26,7 @@ char *from_lindex(char *str, char delim)
 		}
 	}
 	if (check == len)
-		return ("\0");
+		return (NULL);
 
 	return (str + indx);
 }
@@ -57,7 +57,7 @@ char *after_lindex(char *str, char delim)
 		}
 	}
 	if (check == len)
-		return ("\0");
+		return (NULL);
 	return (str + (indx + 1));
 }
 
@@ -86,7 +86,7 @@ char *from_findex(char *str, char delim)
 		}
 	}
 	if (check == len)
-		return ("\0");
+		return (NULL);
 
 	return (str + indx);
 }

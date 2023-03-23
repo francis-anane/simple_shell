@@ -55,3 +55,11 @@ int _unset(char *cmd_str, __attribute__((unused)) char **path)
 	}
 	return (ret);
 }
+
+/**
+ * shell_built_ins - Call built in functions
+ * @cmd: The command
+ * @arg: Argument to command
+ * @path: Pointer to the command file path string.
+ *
+ */

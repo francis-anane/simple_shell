@@ -3,10 +3,12 @@
 /**
  * get_path - Get a path for a commandline executable.
  * @exe: The commandline file to get path for.
+ * @paths: Pointer to executables path.
+ * @exec_perm: A pointer to an int to set permission for execution
  * Return: A pointer to a malloc alloca the path
  */
 
-char *get_path(char *exe, char *paths)
+char *get_path(char *exe, char *paths, int *exec_perm)
 {
 	char *paths_cp, *exe_path, *path_tok;
 	int tok_len, exe_len;
@@ -14,6 +16,7 @@ char *get_path(char *exe, char *paths)
 	/* get path of shell executables*/
 	if (exe == NULL)
 		return (NULL);
+	*exec_perm = 1;
 	paths_cp = string_dup(paths);
 	path_tok = strtok(paths_cp, ":");
 	exe_len = string_len(exe);
@@ -42,6 +45,7 @@ char *get_path(char *exe, char *paths)
 		path_tok = strtok(NULL, ":");
 	}
 	free(paths_cp);
+	*exec_perm = cdir_exec(exe, exec_perm);
 	exe_path = string_dup(exe);
 	return (exe_path);
 }

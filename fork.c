@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- * creat_ps - Creat a child process
- * @sh: Program name for error output
+ * new_ps - Creat a child process
+ * @sh: Program name param for error output
  * @p: Path for the executable
- * @av: Arguments for the process
- * @ev: Envronment Arguments for the process.
+ * @av: Arguments for the execve call
+ * @ev: Envronment Arguments for the execve call.
  * @cf: Pointer to the command file
  * @c: commands count
- * @s: pointer to exit status number
+ * @s: pointer to programs excution status.
  */
 
 void creat_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s)
@@ -16,7 +16,15 @@ void creat_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s)
 	int pid, status, ret;
 	DIR *dir;
 
-	if (access(p, F_OK) == 0)
+	/*char *buff = NULL, *curdir;
+	  size_t n = 1024;*/
+
+	/*curdir = getcwd(buff, n);
+	_strcat(curdir, "/");
+	_strcat(curdir, cf);
+	printf("%s\n", curdir);*/
+
+	if ((access(p, F_OK) == 0) && (*s == 1))
 	{
 		dir = opendir(p);
 		if (dir != NULL)
