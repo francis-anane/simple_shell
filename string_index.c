@@ -90,3 +90,32 @@ char *from_findex(char *str, char delim)
 
 	return (str + indx);
 }
+/**
+ * after_findex - Point after the first index of a
+ * specified delimeter in a string
+ * @str:  The string.
+ * @delim: The delimeter character
+ * Return: The string after the first index or null if str is null
+ * or delimeter was not found  in str.
+ */
+
+char *after_findex(char *str, char delim)
+{
+	int indx, check, len;
+
+	check = string_len(str);
+	len = string_len(str);
+
+	for (indx = 0; indx < len; indx++)
+	{
+		if (str[indx] == delim)
+		{
+			check--;
+			break;
+		}
+	}
+	if (check == len)
+		return (NULL);
+
+	return (str + (indx + 1));
+}
