@@ -32,8 +32,8 @@ int main(int ac, char **av, char **env)
 		_term(cmd, &st);/* call exit if cmd is exit*/
 		if ((_unset(cmd, &paths)) == 0)
 			continue;
-		if (_env(cmd, env) == 0)
-			continue;
+		/*if (_env(cmd, env) == 0)
+			continue;*/
 		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
 		if (cmd_file == NULL)
