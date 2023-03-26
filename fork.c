@@ -23,6 +23,7 @@ void new_ps(char *sh, char *p, char **av, char **ev, char *cf, int c, int *s)
 		if (pid == 0)
 			execve(p, av, ev);
 		waitpid(pid, &status, 0);
+		*s = WEXITSTATUS(status);
 	}
 	if (*s == 127)
 	{
