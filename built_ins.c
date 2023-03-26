@@ -30,34 +30,55 @@ void _cd(char *dir, char *sh, int c, int *s)
 
 void _term(char *cmd, int *s)
 {
-	free(cmd);
-	exit(*s);
+	if (_strcmp(cmd, "exit") == 0)
+	{
+		free(cmd);
+		exit(*s);
+	}
 }
 
 /**
  * _unset - Unset environment variable of the shell executions path
  * @cmd_str: command string
  * @path: Pointer to the executions path.
- * Return: 0 on success, -1 on failure
+ * Return: 0 (condition is true), -1 (condition is false)
  */
 
 int _unset(char *cmd_str, __attribute__((unused)) char **path)
 {
-	int ret = -1;
 
 	if (_strcmp(cmd_str, "unset PATH") == 0)
 	{
 		*path = "\0";
 		free(cmd_str);
-		ret = 0;
+		return (0);
 	}
-	return (ret);
+	return (-1);
 }
 
 /**
- * shell_built_ins - Call built in functions
+ * _env - Implements built-in function env.
  * @cmd: The command
- * @arg: Argument to command
- * @path: Pointer to the command file path string.
+ * @env: Pointer to array of environment arguments
  *
+ * Return: 0 (condition is true), -1 (condition is false)
  */
+
+int _env(char *cmd, char **env)
+{
+	int i;
+
+	if (_strcmp(cmd, "env") == 0)
+	{
+		i = 0;
+		while (env[i] != NULL)
+		{
+			_print(1, env[i]);
+			i++;
+		}
+		_print(1, "\n");
+		free(cmd);
+		return (0);
+	}
+	return (-1);
+}

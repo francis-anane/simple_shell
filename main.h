@@ -19,7 +19,7 @@
 
 int _unset(char *cmd_str, __attribute__((unused)) char **path);
 void _print(const unsigned int n, ...);
-void _putchar(char c);
+int _putchar(char c);
 void print_number_err(int n);
 void _print_err(const unsigned int n, ...);
 char *from_lindex(char *str, char delim);
@@ -48,5 +48,6 @@ void _putchar_err(char c);
 int in_cdir(char *cfile);
 int is_dir(char *path);
 int cdir_exec(char *cfile, int *st);
+int _env(char *cmd, char **env);
 
 #endif

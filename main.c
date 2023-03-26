@@ -7,7 +7,7 @@
  * @ac: Argument count
  * @av: Argument vector
  * @env: Environment argument
- * Return: 0 (success)
+ * Return: 0 (success), or EXIT_FAILURE value (failure)
  */
 
 int main(int ac, char **av, char **env)
@@ -29,9 +29,10 @@ int main(int ac, char **av, char **env)
 		}
 		if (cmd == NULL)
 			continue;
-		if (_strcmp(cmd, "exit") == 0)
-			_term(cmd, &st);
+		_term(cmd, &st);/* call exit if cmd is exit*/
 		if ((_unset(cmd, &paths)) == 0)
+			continue;
+		if (_env(cmd, env) == 0)
 			continue;
 		cmd_cp = string_dup(cmd);
 		cmd_file = _cmdfile(cmd_cp);
