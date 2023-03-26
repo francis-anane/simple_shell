@@ -21,7 +21,9 @@ int cdir_exec(char *cfile, int *st)
 		}
 		else
 		{
-			if (*chk != '/')
+			if (*chk == '.')
+				return (1);
+			else if (*chk != '/')
 			{
 				*st = 127;
 				return (0);
