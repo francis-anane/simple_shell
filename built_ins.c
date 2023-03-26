@@ -25,16 +25,12 @@ void _cd(char *dir, char *sh, int c, int *s)
 /**
  * _term - Exit a proccess
  * @cmd: A pointer to a memory to free
- * @cmd_cp: A pointer to a memory to free
- * @path: memory to free
- * @argv: A pointer to a malloc allocated array of strings.
  * @s: Pointer to exit status.
  */
 
-void _term(char *path, char *cmd, char *cmd_cp, char **argv, int *s)
+void _term(char *cmd, int *s)
 {
-	free_mem(3, path, cmd, cmd_cp);
-	free_arr(argv);
+	free(cmd);
 	exit(*s);
 }
 

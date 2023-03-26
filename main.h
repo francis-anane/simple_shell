@@ -43,9 +43,10 @@ int free_arr(char **arr);
 void free_mem(const unsigned int n, ...);
 int string_len(char *str);
 char *string_dup(char *str);
-void _term(char *path, char *cmd, char *cmd_cp, char **argv, int *st);
+void _term(char *cmd, int *st);
 void _putchar_err(char c);
 int in_cdir(char *cfile);
 int is_dir(char *path);
+int cdir_exec(char *cfile, int *st);
 
 #endif

@@ -13,13 +13,13 @@
 int main(int ac, char **av, char **env)
 {
 	char *cmd, *cmd_cp, *cmd_file, *path, **argv, *paths;/*arg0;*/
-	int rd = 0, c = 0, st = 0;
+	int rd = 0, count = 0, st = 0;
 
-	cmdl_arg(ac, av, c);
+	cmdl_arg(ac, av, count);
 	paths = getenv("PATH");
 	while (1)
 	{
-		c++;
+		count++;
 		cmd = get_cmd(&rd);
 		if (rd == EOF)
 		{
@@ -29,6 +29,8 @@ int main(int ac, char **av, char **env)
 		}
 		if (cmd == NULL)
 			continue;
+		if (_strcmp(cmd, "exit") == 0)
+			_term(cmd, &st);
 		if ((_unset(cmd, &paths)) == 0)
 			continue;
 		cmd_cp = string_dup(cmd);
@@ -41,12 +43,10 @@ int main(int ac, char **av, char **env)
 		path = get_path(cmd_file, paths, &st);
 		/*arg0 = _arg0(cmd_file);*/
 		argv = get_args(cmd, cmd_file);
-		if (_strcmp(path, "exit") == 0)
-			_term(path, cmd, cmd_cp, argv, &st);
-		else if (_strcmp(path, "cd") == 0)
-			_cd(argv[1], av[0], c, &st);
+		if (_strcmp(path, "cd") == 0)
+			_cd(argv[1], av[0], count, &st);
 		else
-			new_ps(av[0], path, argv, env, cmd_file, c, &st);
+			new_ps(av[0], path, argv, env, cmd_file, count, &st);
 		free_mem(3, path, cmd_cp, cmd);
 		free_arr(argv);
 	}
