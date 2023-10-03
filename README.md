@@ -41,16 +41,16 @@ Ensure that you have GCC (GNU Compiler Collection) installed on your system. The
 ## usage examples
 ```Running a Command:
 $ ./hsh
- ($) ls
+($) ls
 file1.txt  file2.txt  directory/
 
  Changing Directory:
  $ ./hsh
- $ cd directory/
+ ($) cd directory/
 
  Accessing Environment Variables:
  $ ./hsh
- $ echo $HOME
+ ($) echo $HOME
 /home/user
 ```
 ## contributing
