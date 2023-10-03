@@ -6,7 +6,7 @@
 * [Usage](#usage)
 * [Features](#features)
 * [Installation](#installation)
-* [Usage Examples](#usage examples)
+* [Examples](#usage examples)
 * [Contributing](#contributing)
 * [License](#license)
 
