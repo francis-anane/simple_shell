@@ -6,7 +6,7 @@
 * [Usage](#usage)
 * [Features](#features)
 * [Installation](#installation)
-* [Examples](#examples)
+* [Usage Examples](#usage-examples)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -38,20 +38,21 @@ To compile the Simple Shell (hsh), you can use the following command:
 * $ gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -o hsh *.c
 Ensure that you have GCC (GNU Compiler Collection) installed on your system. The -Wall and other flags enable strict error checking to maintain code quality.
 
-## examples
-* Running a Command:
-* $ ./hsh
-* ($) ls
+## usage examples
+```Running a Command:
+$ ./hsh
+ ($) ls
 file1.txt  file2.txt  directory/
 
-* Changing Directory:
-* $ ./hsh
-* $ cd directory/
+ Changing Directory:
+ $ ./hsh
+ $ cd directory/
 
-* Accessing Environment Variables:
-* $ ./hsh
-* $ echo $HOME
+ Accessing Environment Variables:
+ $ ./hsh
+ $ echo $HOME
 /home/user
+```
 ## contributing
 Contributions to the Simple Shell project are welcome! If you'd like to contribute, please follow these guidelines:
 
