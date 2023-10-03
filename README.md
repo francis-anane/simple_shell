@@ -1,14 +1,14 @@
 # Simple Shell (hsh)
 
 ## Table of Contents
-* [Introduction] (introduction)
-* [Environment] (environment)
-* [Usage] (usage)
-* [Features] (features)
-* [Installation] (installation)
-* [Usage Examples] (usage examples)
-* [Contributing] (contributing)
-* [License] (license)
+* [Introduction](#introduction)
+* [Environment](#environment)
+* [Usage](#usage)
+* [Features](#features)
+* [Installation](#installation)
+* [Usage Examples](#usage examples)
+* [Contributing](#contributing)
+* [License](#license)
 
 ## introduction
 
