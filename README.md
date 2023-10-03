@@ -33,25 +33,31 @@ Once the shell is running, you can enter commands and interact with your system 
 * Error Handling: hsh provides informative error messages and returns appropriate exit codes.
 
 ## installation
-```To compile the Simple Shell (hsh), you can use the following command:
+To compile the Simple Shell (hsh), you can use the following command:
 
-* $ gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -o hsh *.c
-Ensure that you have GCC (GNU Compiler Collection) installed on your system. The -Wall and other flags enable strict error checking to maintain code quality.
-```
+ ```$ gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -o hsh *.c```
+
+Ensure that you have GCC (GNU Compiler Collection) installed on your system.
+The -Wall and other flags enable strict error checking to maintain code quality.
 
 ## usage examples
-```Running a Command:
+
+* Running a Command:
+```
 $ ./hsh
 ($) ls
 file1.txt  file2.txt  directory/
 
- Changing Directory:
+```
+ * Changing Directory:
+```
  $ ./hsh
  ($) cd directory/
-
- Accessing Environment Variables:
- $ ./hsh
- ($) echo $HOME
+```
+* Accessing Environment Variables:
+```
+$ ./hsh
+($) echo $HOME
 /home/user
 ```
 ## contributing
